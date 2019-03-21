@@ -18,7 +18,7 @@ public class MyDeque<E>{
     end = 0;
   }
   public int size(){
-    return data.length;
+    return 0;
   }
   public String toString(){
     String output = "";
@@ -69,7 +69,16 @@ public class MyDeque<E>{
     }
   }
   public E removeFirst(){
-    return null;
+    E returner = data[start];
+    data[start] = null;
+    int newStart = start + 1;
+    if (newStart >= data.length) {
+      start = 0;
+    }
+    else {
+      start = newStart;
+    }
+    return returner;
   }
   public E removeLast(){
     return null;
