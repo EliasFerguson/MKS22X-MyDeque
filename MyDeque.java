@@ -7,11 +7,15 @@ public class MyDeque<E>{
     @SuppressWarnings("unchecked")
     E[] d = (E[])new Object[10];
     data = d;
+    start = 0;
+    end = 0;
   }
   public MyDeque(int initialCapacity){
     @SuppressWarnings("unchecked")
     E[] d = (E[])new Object[initialCapacity];
     data = d;
+    start = 0;
+    end = 0;
   }
   public int size(){
     return data.length;
