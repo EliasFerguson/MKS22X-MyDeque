@@ -92,6 +92,9 @@ public class MyDeque<E>{
     }
     return returner;
   }
+  public void resize() {
+    
+  }
   public E getFirst(){
     return data[start];
   }
