@@ -6,7 +6,6 @@ public class MyDeque<E>{
   public MyDeque(){
     @SuppressWarnings("unchecked")
     E[] d = (E[])new Object[10];
-    size = 10;
     data = d;
     start = 0;
     end = 0;
@@ -14,7 +13,6 @@ public class MyDeque<E>{
   public MyDeque(int initialCapacity){
     @SuppressWarnings("unchecked")
     E[] d = (E[])new Object[initialCapacity];
-    size = initialCapacity;
     data = d;
     start = 0;
     end = 0;
@@ -50,7 +48,25 @@ public class MyDeque<E>{
     }
   }
   public void addLast(E element){
-
+    int newEnd = end + 1;
+    if (newEnd >= data.length) {
+      if (data[newEnd] == null) {
+        data[newEnd] = element;
+        end = newEnd;
+      }
+      else {
+        //resize();
+      }
+    }
+    else {
+      if (data[newEnd] == null) {
+        data[newEnd] = element;
+        end = newEnd;
+      }
+      else {
+        //resize();
+      }
+    }
   }
   public E removeFirst(){
     return null;
