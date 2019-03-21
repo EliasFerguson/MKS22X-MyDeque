@@ -6,6 +6,7 @@ public class MyDeque<E>{
   public MyDeque(){
     @SuppressWarnings("unchecked")
     E[] d = (E[])new Object[10];
+    size = 10;
     data = d;
     start = 0;
     end = 0;
@@ -13,6 +14,7 @@ public class MyDeque<E>{
   public MyDeque(int initialCapacity){
     @SuppressWarnings("unchecked")
     E[] d = (E[])new Object[initialCapacity];
+    size = initialCapacity;
     data = d;
     start = 0;
     end = 0;
@@ -21,7 +23,9 @@ public class MyDeque<E>{
     return data.length;
   }
   public String toString(){
-    return "";
+    String output = "";
+
+    return output;
   }
   public void addFirst(E element){
 
@@ -36,9 +40,9 @@ public class MyDeque<E>{
     return null;
   }
   public E getFirst(){
-    return null;
+    return data[start];
   }
   public E getLast(){
-    return null;
+    return data[end];
   }
 }
