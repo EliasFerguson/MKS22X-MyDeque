@@ -7,6 +7,7 @@ public class MyDeque<E>{
     @SuppressWarnings("unchecked")
     E[] d = (E[])new Object[10];
     data = d;
+    size = 0;
     start = 0;
     end = 0;
   }
@@ -14,11 +15,21 @@ public class MyDeque<E>{
     @SuppressWarnings("unchecked")
     E[] d = (E[])new Object[initialCapacity];
     data = d;
+    size = 0;
     start = 0;
     end = 0;
   }
   public int size(){
-    return 0;
+    if (end > start) {
+      size = (end - start) + 1;
+    }
+    else if (end < start) {
+      size = (start - end) + 1;
+    }
+    else {
+      size = 0;
+    }
+    return size;
   }
   public String toString(){
     String output = "";
@@ -93,7 +104,7 @@ public class MyDeque<E>{
     return returner;
   }
   public void resize() {
-    
+
   }
   public E getFirst(){
     return data[start];
