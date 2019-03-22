@@ -104,7 +104,20 @@ public class MyDeque<E>{
     return returner;
   }
   public void resize() {
-
+    @SuppressWarnings("unchecked")
+    E[] newData = (E[]) new Object[data.length * 2];
+    int s = start;
+    int e = end;
+    int i = 0;
+    while (s != e + 1) {
+      newData[i] = data[s];
+      s++;
+      i++;
+      if (s == data.length) s = 0;
+    }
+    start = 0;
+    end = i;
+    data = newData;
   }
   public E getFirst(){
     return data[start];
