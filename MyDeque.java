@@ -33,7 +33,13 @@ public class MyDeque<E>{
   }
   public String toString(){
     String output = "";
+    int s = start;
+    int e = end;
+    while (s != e + 1) {
 
+      s++;
+      if (s == data.length) s = 0;
+    }
     return output;
   }
   public void addFirst(E element){
@@ -45,7 +51,9 @@ public class MyDeque<E>{
         start = newStart;
       }
       else {
-        //resize();
+        resize();
+        data[newStart] = element;
+        start = newStart;
       }
     }
     else {
@@ -54,7 +62,9 @@ public class MyDeque<E>{
         start = newStart;
       }
       else {
-        //resize();
+        resize();
+        data[newStart] = element;
+        start = newStart;
       }
     }
   }
@@ -66,7 +76,9 @@ public class MyDeque<E>{
         end = newEnd;
       }
       else {
-        //resize();
+        resize();
+        data[newEnd] = element;
+        end = newEnd;
       }
     }
     else {
@@ -75,7 +87,9 @@ public class MyDeque<E>{
         end = newEnd;
       }
       else {
-        //resize();
+        resize();
+        data[newEnd] = element;
+        end = newEnd;
       }
     }
   }
@@ -105,7 +119,7 @@ public class MyDeque<E>{
   }
   public void resize() {
     @SuppressWarnings("unchecked")
-    E[] newData = (E[]) new Object[data.length * 2];
+    E[] newData = (E[]) new Object[(data.length + 1) * 2];
     int s = start;
     int e = end;
     int i = 0;
