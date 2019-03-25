@@ -1,3 +1,4 @@
+import java.util.*;
 public class MyDeque<E>{
   private E[] data;
   private int size, start, end;
@@ -32,16 +33,16 @@ public class MyDeque<E>{
     return size;
   }
   public String toString(){
-    if (size == 0) return "[]";
-    String output = "[";
+    if (size == 0) return "{}";
+    String output = "{";
     int s = start;
     int e = end;
     while (s != e + 1) {
-      output += data[s] + " ,";
+      output += data[s] + " ";
       s++;
       if (s == data.length) s = 0;
     }
-    return output + "]";
+    return output + "}";
   }
   public void addFirst(E element){
     int newStart = start - 1;
@@ -135,9 +136,11 @@ public class MyDeque<E>{
     data = newData;
   }
   public E getFirst(){
+    if (size == 0) throw new NoSuchElementException();
     return data[start];
   }
   public E getLast(){
+    if (size == 0) throw new NoSuchElementException();
     return data[end];
   }
 }
