@@ -32,15 +32,16 @@ public class MyDeque<E>{
     return size;
   }
   public String toString(){
-    String output = "";
+    if (size == 0) return "[]";
+    String output = "[";
     int s = start;
     int e = end;
     while (s != e + 1) {
-
+      output += data[s] + " ,";
       s++;
       if (s == data.length) s = 0;
     }
-    return output;
+    return output + "]";
   }
   public void addFirst(E element){
     int newStart = start - 1;
