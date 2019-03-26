@@ -21,7 +21,7 @@ public class MyDeque<E>{
     end = -1;
   }
   public int size(){
-    if (end > start) {
+    /* if (end > start) {
       size = (end - start) + 1;
     }
     else if (end < start) {
@@ -29,7 +29,7 @@ public class MyDeque<E>{
     }
     else {
       size = 0;
-    }
+    } */
     return size;
   }
   public String toString(){
@@ -37,7 +37,7 @@ public class MyDeque<E>{
     String output = "{";
     int s = start;
     int e = end;
-    while (s != e + 1) {
+    while (s != e) {
       output += data[s] + " ";
       s++;
       if (s == data.length) s = 0;
@@ -84,17 +84,19 @@ public class MyDeque<E>{
     end = newEnd;
     size++;
   }
-  
   public E removeFirst(){
     if (size == 0) throw new NoSuchElementException();
     E returner = data[start];
     data[start] = null;
-    int newStart = start + 1;
-    if (newStart >= data.length) {
+    if (start == data.length - 1) {
       start = 0;
     }
+    else if (size == 1){
+      start = -1;
+      end = -1;
+    }
     else {
-      start = newStart;
+      start++;
     }
     size--;
     return returner;
@@ -103,12 +105,15 @@ public class MyDeque<E>{
     if (size == 0) throw new NoSuchElementException();
     E returner = data[end];
     data[end] = null;
-    int newEnd = end - 1;
-    if (newEnd < 0) {
+    if (end == 0) {
       end = data.length - 1;
     }
+    else if (size == 1) {
+      end = 0;
+      start = 0;
+    }
     else {
-      end = newEnd;
+      end--;
     }
     size--;
     return returner;
@@ -123,10 +128,10 @@ public class MyDeque<E>{
       newData[i] = data[s];
       s++;
       i++;
-      if (s == data.length) s = 0;
+      if (s == data.length - 1) s = 0;
     }
     start = 0;
-    end = i;
+    end = i - 1;
     data = newData;
   }
   public E getFirst(){
