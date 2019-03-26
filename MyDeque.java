@@ -9,16 +9,16 @@ public class MyDeque<E>{
     E[] d = (E[])new Object[10];
     data = d;
     size = 0;
-    start = 0;
-    end = 0;
+    start = -1;
+    end = -1;
   }
   public MyDeque(int initialCapacity){
     @SuppressWarnings("unchecked")
     E[] d = (E[])new Object[initialCapacity];
     data = d;
     size = 0;
-    start = 0;
-    end = 0;
+    start = -1;
+    end = -1;
   }
   public int size(){
     if (end > start) {
@@ -45,10 +45,16 @@ public class MyDeque<E>{
     return output + "}";
   }
   public void addFirst(E element){
+    if (element == null) throw new NullPointerException();
     int newStart;
-    if (size == data.length) {
+    if (size == 0) {
+      start = 0;
+      end = 0;
+      newStart = 0;
+    }
+    else if (size == data.length) {
       resize();
-      newStart = start - 1;
+      newStart = data.length - 1;
     }
     else {
       newStart = start - 1;
@@ -59,8 +65,14 @@ public class MyDeque<E>{
     size++;
   }
   public void addLast(E element){
+    if (element == null) throw new NullPointerException();
     int newEnd;
-    if (size == data.length) {
+    if (size == 0) {
+      start = 0;
+      end = 0;
+      newEnd = 0;
+    }
+    else if (size == data.length) {
       resize();
       newEnd = end + 1;
     }
