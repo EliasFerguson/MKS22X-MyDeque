@@ -34,54 +34,54 @@ public class MyDeque<E>{
   }
   public String toString(){
     if (size == 0) return "{}";
-    String output = "{";
-    int s = start;
-    int e = end;
-    while (s != e) {
-      output += data[s] + " ";
-      s++;
-      if (s == data.length) s = 0;
+    String output = "[";
+    if (start <= end){
+      for (int idx = start; idx < end + 1; idx++){
+        output += data[idx] + ", ";
+      }
     }
-    return output + "}";
+    else{
+      for (int idx = start; idx < data.length; idx++) {
+        output += data[idx] + ", ";
+      }
+      for (int idx = 0; idx < end + 1; idx++) {
+        output += data[idx] + ", ";
+      }
+    }
+    return output.substring(0, output.length() - 2) + "]";
   }
   public void addFirst(E element){
     if (element == null) throw new NullPointerException();
-    int newStart;
     if (size == 0) {
       start = 0;
       end = 0;
-      newStart = 0;
     }
     else if (size == data.length) {
       resize();
-      newStart = data.length - 1;
+      start = data.length - 1;
     }
     else {
-      newStart = start - 1;
-      if (newStart < 0) newStart = data.length - 1;
+      start--;
+      if (start < 0) start = data.length - 1;
     }
-    data[newStart] = element;
-    start = newStart;
+    data[start] = element;
     size++;
   }
   public void addLast(E element){
     if (element == null) throw new NullPointerException();
-    int newEnd;
     if (size == 0) {
       start = 0;
       end = 0;
-      newEnd = 0;
     }
     else if (size == data.length) {
       resize();
-      newEnd = end + 1;
+      end++;
     }
     else {
-      newEnd = end + 1;
-      if (newEnd >= data.length) newEnd = 0;
+      end++;
+      if (end >= data.length) end = 0;
     }
-    data[newEnd] = element;
-    end = newEnd;
+    data[end] = element;
     size++;
   }
   public E removeFirst(){
@@ -105,6 +105,7 @@ public class MyDeque<E>{
     if (size == 0) throw new NoSuchElementException();
     E returner = data[end];
     data[end] = null;
+    size--;
     if (end == 0) {
       end = data.length - 1;
     }
@@ -115,20 +116,27 @@ public class MyDeque<E>{
     else {
       end--;
     }
-    size--;
     return returner;
   }
   public void resize() {
     @SuppressWarnings("unchecked")
     E[] newData = (E[]) new Object[(data.length + 1) * 2];
-    int s = start;
-    int e = end;
     int i = 0;
-    while (s != e + 1) {
-      newData[i] = data[s];
-      s++;
-      i++;
-      if (s == data.length - 1) s = 0;
+    if (start <= end){
+      for (int idx = start; idx < end + 1; idx++){
+        newData[i] = data[idx];
+        i++;
+      }
+    }
+    else{
+      for (int idx = start; idx < data.length; idx++) {
+        newData[i] = data[idx];
+        i++;
+      }
+      for (int idx = 0; idx < end + 1; idx++) {
+        newData[i] = data[idx];
+        i++;
+      }
     }
     start = 0;
     end = i - 1;
