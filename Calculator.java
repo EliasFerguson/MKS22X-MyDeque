@@ -8,9 +8,17 @@ public class Calculator {
       else {
         Double a = Double.parseDouble(deque.removeLast());
         Double b = Double.parseDouble(deque.removeLast());
+        double replacementVal = 0;
+        if (token.equals("+")) replacementVal = a + b;
+        else if (token.equals("-")) replacementVal = a - b;
+        else if (token.equals("*")) replacementVal = a * b;
+        else if (token.equals("/")) replacementVal = a / b;
+        else if (token.equals("%")) replacementVal = a % b;
+        String holder = replacementVal + "";
+        deque.addLast(holder);
       }
     }
-    return 1 + 1.0;
+    return Double.parseDouble(deque.removeLast());
   }
   public static boolean isOperation(String input) {
     String[] operations = {"+", "-", "*", "/", "%"};
