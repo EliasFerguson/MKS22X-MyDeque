@@ -9,11 +9,11 @@ public class Calculator {
         Double a = Double.parseDouble(deque.removeLast());
         Double b = Double.parseDouble(deque.removeLast());
         double replacementVal = 0;
-        if (token.equals("+")) replacementVal = a + b;
-        else if (token.equals("-")) replacementVal = a - b;
-        else if (token.equals("*")) replacementVal = a * b;
-        else if (token.equals("/")) replacementVal = a / b;
-        else if (token.equals("%")) replacementVal = a % b;
+        if (token.equals("+")) replacementVal = b + a;
+        else if (token.equals("-")) replacementVal = b - a;
+        else if (token.equals("*")) replacementVal = b * a;
+        else if (token.equals("/")) replacementVal = b / a;
+        else if (token.equals("%")) replacementVal = b % a;
         String holder = replacementVal + "";
         deque.addLast(holder);
       }
